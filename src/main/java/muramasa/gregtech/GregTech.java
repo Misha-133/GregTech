@@ -152,6 +152,7 @@ public class GregTech extends AntimatterMod {
                 Machines.init();
                 Guis.init(side);
                 Models.init();
+                GregTechSounds.init();
             }
             case DATA_READY -> {
                 Structures.init();
