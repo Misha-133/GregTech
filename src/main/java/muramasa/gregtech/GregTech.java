@@ -57,12 +57,11 @@ public class GregTech extends AntimatterMod {
         MinecraftForge.EVENT_BUS.addListener(GregTech::onProviders);
         MinecraftForge.EVENT_BUS.addListener(WorldGenLoader::init);
 
-        AntimatterDynamics.addProvider(Ref.ID,
+        AntimatterDynamics.clientProvider(Ref.ID,
                 g -> new AntimatterBlockStateProvider(Ref.ID, Ref.NAME + " BlockStates", g));
-        AntimatterDynamics.addProvider(Ref.ID,
+        AntimatterDynamics.clientProvider(Ref.ID,
                 g -> new AntimatterItemModelProvider(Ref.ID, Ref.NAME + " Item Models", g));
-        AntimatterDynamics.addProvider(Ref.ID, GregTechLocalizations.en_US::new);
-        AntimatterDynamics.addProvider(Ref.ID, GregTechLocalizations.ru_RU::new);
+        AntimatterDynamics.clientProvider(Ref.ID, GregTechLocalizations.en_US::new);
     }
 
     private static void onProviders(AntimatterProvidersEvent ev) {
@@ -84,7 +83,7 @@ public class GregTech extends AntimatterMod {
                     g -> new GregtechBlockLootProvider(Ref.ID, Ref.NAME.concat(" Loot generator"), g));
         }
     }
-
+    
     private static void registerCraftingLoaders(AntimatterCraftingEvent event) {
         event.addLoader(Parts::loadRecipes);
         event.addLoader(Smelting::loadRecipes);
@@ -158,7 +157,7 @@ public class GregTech extends AntimatterMod {
             }
             case DATA_READY -> {
                 Structures.init();
-                //if (side == Dist.CLIENT) StructureInfo.init();
+              //  if (side == Dist.CLIENT) StructureInfo.init();
                 TierMaps.providerInit();
             }
             default -> {
